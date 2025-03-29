@@ -1,6 +1,9 @@
 # ベースイメージ
 FROM node:20-alpine
 
+# 必要なパッケージをインストール
+RUN apk add --no-cache openssl
+
 # 作業ディレクトリを設定
 WORKDIR /app
 
