@@ -8,17 +8,4 @@ services:
       - .:/app
       - /app/node_modules
       - ./prisma:/app/prisma
-    command: sh -c "yarn install && yarn prisma generate && yarn prisma migrate dev --name init && yarn start:dev"
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: app_db
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
-volumes:
-  postgres_data: 
+    command: sh -c "yarn install && yarn prisma generate && yarn prisma migrate dev --name init && yarn start:dev" 
