@@ -8,4 +8,10 @@ services:
       - .:/app
       - /app/node_modules
       - ./prisma:/app/prisma
-    command: sh -c "yarn install && yarn prisma generate && yarn prisma migrate dev --name init && yarn start:dev" 
+    command: >
+      sh -c "
+        yarn install &&
+        yarn prisma generate &&
+        yarn prisma migrate reset --force &&
+        yarn start:dev
+      " 
