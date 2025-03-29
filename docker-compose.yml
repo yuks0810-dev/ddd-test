@@ -4,13 +4,10 @@ services:
     build: .
     ports:
       - "3000:3000"
-    environment:
-      DATABASE_URL: postgres://user:password@db:5432/app_db
-    depends_on:
-      - db
     volumes:
       - .:/app
       - /app/node_modules
+      - ./prisma:/app/prisma
     command: sh -c "yarn install && yarn prisma generate && yarn prisma migrate dev --name init && yarn start:dev"
   db:
     image: postgres:16-alpine
