@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, Inject } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { IncidentRepository } from '../../domain/repositories/incident.repository';
 import { Incident } from '../../domain/entities/incident';
@@ -7,6 +7,7 @@ import { IncidentCompletedEvent } from '../../domain/events/incident-completed.e
 @Injectable()
 export class IncidentApplicationService {
   constructor(
+    @Inject('IncidentRepository')
     private readonly repository: IncidentRepository,
     private readonly eventEmitter: EventEmitter2,
   ) {}
