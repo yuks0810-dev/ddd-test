@@ -7,11 +7,12 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-      - ./prisma:/app/prisma
+    environment:
+      - DATABASE_URL=file:/app/prisma/dev.db
     command: >
       sh -c "
-        yarn install &&
-        yarn prisma generate &&
-        yarn prisma migrate reset --force &&
-        yarn start:dev
+        npm install &&
+        npx prisma generate &&
+        npx prisma migrate deploy &&
+        npm run start:dev
       " 
